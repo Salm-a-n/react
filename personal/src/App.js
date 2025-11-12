@@ -1,16 +1,20 @@
-import './App.css';
 import React from 'react';
+
 function ProfileCard() {
   const name = "Salman";
-  const age = "20";
-  // const isStudent = true;
+  const age = 20;
+  const isStudent = true;
   const headingColor = "lightblue";
-  const hobees = ["Reading", "Hiking", "Coding"];
-  const hoblist = [ ];
-  for( let i=0; i < hobees.length; i++) {
-       hoblist.push(<li key ={i}> {hobees[i]} </li> );
- }
- function showEnthusiasm() {
+  const favoriteHobbies = ["Reading", "Hiking", "Coding"];
+
+ 
+  const hobbyListForLoop = [];
+  for (let i = 0; i < favoriteHobbies.length; i++) {
+    hobbyListForLoop.push(<li key={`for-${i}`}>{favoriteHobbies[i]}</li>);
+  }
+
+
+  function showEnthusiasm() {
     document.getElementById("enthusiasmMsg").innerText =
       "Hello from React! I love my hobbies!";
     document.getElementById("mainHeading").style.backgroundColor = headingColor;
@@ -22,32 +26,43 @@ function ProfileCard() {
     backgroundColor: '#f8f9fa',
     borderRadius: '10px',
     width: '300px',
-    textAlign: 'center'
+    textAlign: 'center',
+    marginBottom: '20px'
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
-      <h1 id='mainHeading'>hello Guys </h1>
-      <div style={cardStyle} id='enthusiasmMsg'>
-        <h3>{name}</h3>
-        <h3>{age}</h3>
-      </div>
+    <div className='container-fluid'>
+          <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+            <div className="text-center">
+              <h1 id="mainHeading" className="mb-4">Hello Guys</h1>
 
-      <div>
-            <h1>hoby</h1>
-            <ul>{hoblist}</ul>
-      </div>
+              <div style={cardStyle} className="mb-4 mx-auto">
+                <h3>Name: {name}</h3>
+                <h4>Age: {age}</h4>
+                <h5>Student: {isStudent.toString()}</h5>
+              </div>
 
+              <h4>Hobbies (Using for loop)</h4>
+              <ul>{hobbyListForLoop}</ul>
 
-       <div>
-           {hobees.map((item)=>{return <p>{item}</p>})}  
-      </div>
+              <h4>Hobbies (Using map)</h4>
+              <ul>
+                {favoriteHobbies.map((hobby, index) => (
+                  <li key={`map-${index}`}>{hobby}</li>
+                ))}
+              </ul>
 
-      <button className="btn btn-primary mt-3" onClick={showEnthusiasm}>
-        Show Enthusiasm
-      </button>
+              <p id="enthusiasmMsg" className="mt-3">
+                Click the button to see my enthusiasm!
+              </p>
 
-    </div>
-  );
-};
+              <button className="btn btn-primary mt-2" onClick={showEnthusiasm}>
+                Show Enthusiasm
+              </button>
+            </div>
+          </div>
+    </div>     
+);
+}
+
 export default ProfileCard;
