@@ -32,6 +32,11 @@ function Navbar() {
                      Crud
                 </NavLink>
                 </li>
+                <li className="nav-item">
+                <NavLink to={"/blog/posts"} className={ 'nav-link '+(status => status.isActive ? 'active' : '')}>
+                    blog
+                </NavLink>
+                </li>
             </ul>
         </div>
     </nav>;
