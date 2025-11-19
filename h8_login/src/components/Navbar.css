@@ -1,0 +1,13 @@
+.nav-custom {
+    color: hwb(0 95% 4%) !important;
+    margin-right: 15px;
+    font-weight: 500;
+}
+
+.nav-custom:hover {
+    color: hsl(126, 80%, 45%) !important; 
+}
+
+.navbar-brand-custom:hover {
+    color: hwb(0 4% 22%) !important;
+}
