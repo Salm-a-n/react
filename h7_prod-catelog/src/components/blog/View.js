@@ -14,7 +14,7 @@ function ViewProduct() {
     });
 
     useEffect(() => {
-        axios.get("https://worksheet-catalogue.mashupstack.com/products/" + id)
+        axios.get("https://worksheet-catalogue.mashupstack.com/products" + id)
             .then(response => {
                 setProduct(response.data);
             });

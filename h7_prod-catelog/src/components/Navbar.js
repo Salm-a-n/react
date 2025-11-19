@@ -28,7 +28,7 @@ function Navbar() {
                 </NavLink>
                 </li>
                 <li className="nav-item">
-                <NavLink to={"/product"} className={ 'nav-link '+(status => status.isActive ? 'active' : '')}>
+                <NavLink to={"/products"} className={ 'nav-link '+(status => status.isActive ? 'active' : '')}>
                     product
                 </NavLink>
                 </li>

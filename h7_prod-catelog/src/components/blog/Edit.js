@@ -14,18 +14,17 @@ function EditProduct() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("https://worksheet-catalogue.mashupstack.com/products/" + { id })
+    axios.get("https://worksheet-catalogue.mashupstack.com/products/" +id)
       .then(response => {
-        const data = response.data;
-        setName(data.name);
-        setPrice(data.price);
-        setCategory(data.category);
-        setQuantity(data.quantity);
+        setName(response.data.name);
+        setPrice(response.data.price);
+        setCategory(response.data.category);
+        setQuantity(response.data.quantity);
       });
   }, [id]);
 
   function updateProduct() {
-    axios.put("https://worksheet-catalogue.mashupstack.com/products/" + { id }, {
+    axios.put("https://worksheet-catalogue.mashupstack.com/products/" +id,{
       name: name,
       price: parseFloat(price),
       category: category,
