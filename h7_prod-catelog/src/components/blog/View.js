@@ -1,0 +1,47 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Navbar from "../Navbar";
+
+function ViewProduct() {
+
+    const { id } = useParams();
+    const [product, setProduct] = useState({
+        name: "",
+        price: "",
+        category: "",
+        quantity: ""
+    });
+
+    useEffect(() => {
+        axios.get("https://worksheet-catalogue.mashupstack.com/products/" + id)
+            .then(response => {
+                setProduct(response.data);
+            });
+    }, [id]);
+
+    return (
+        <div>
+            <Navbar />
+            <div className="container mt-4">
+                <div className="row">
+                    <div className="col-12">
+                        <div className="card">
+                            <div className="card-header">
+                                <h3>{product.name}</h3>
+                            </div>
+
+                            <div className="card-body">
+                                <p><strong>Price: </strong> ₹{product.price}</p>
+                                <p><strong>Category: </strong> {product.category}</p>
+                                <p><strong>Quantity: </strong> {product.quantity}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default ViewProduct;
