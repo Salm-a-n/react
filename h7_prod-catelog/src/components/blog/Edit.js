@@ -5,34 +5,36 @@ import Navbar from "../Navbar";
 
 function EditProduct() {
   const { id } = useParams();
-
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState("");
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("https://worksheet-catalogue.mashupstack.com/products/" +id)
+    axios.get("https://worksheet-catalogue.mashupstack.com/products/" + id)
       .then(response => {
-        setName(response.data.name);
-        setPrice(response.data.price);
-        setCategory(response.data.category);
-        setQuantity(response.data.quantity);
-      });
+        const data = response.data;
+        setName(data.name);
+        setPrice(data.price);
+        setCategory(data.category);
+        setQuantity(data.quantity);
+      })
+      .catch(err => console.error(err));
   }, [id]);
 
   function updateProduct() {
-    axios.put("https://worksheet-catalogue.mashupstack.com/products/" +id,{
-      name: name,
+    axios.put("https://worksheet-catalogue.mashupstack.com/products/" + id, {
+      name,
       price: parseFloat(price),
-      category: category,
+      category,
       quantity: parseInt(quantity)
-    }).then(response => {
+    })
+    .then(() => {
       alert("Product updated");
       navigate("/products");
-    });
+    })
+    .catch(err => console.error(err));
   }
 
   return (
@@ -43,37 +45,41 @@ function EditProduct() {
 
         <div className="form-group">
           <label>Name:</label>
-          <input 
-            type="text" className="form-control"
-            value={name} 
-            onChange={(e) => setName(e.target.value)} 
+          <input
+            type="text"
+            className="form-control"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
 
         <div className="form-group">
           <label>Price:</label>
-          <input 
-            type="number" className="form-control"
-            value={price} 
-            onChange={(e) => setPrice(e.target.value)} 
+          <input
+            type="number"
+            className="form-control"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
           />
         </div>
 
         <div className="form-group">
           <label>Category:</label>
-          <input 
-            type="text" className="form-control"
-            value={category} 
-            onChange={(e) => setCategory(e.target.value)} 
+          <input
+            type="text"
+            className="form-control"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
           />
         </div>
 
         <div className="form-group">
           <label>Quantity:</label>
-          <input 
-            type="number" className="form-control"
-            value={quantity} 
-            onChange={(e) => setQuantity(e.target.value)} 
+          <input
+            type="number"
+            className="form-control"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
           />
         </div>
 
