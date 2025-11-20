@@ -7,14 +7,11 @@ function ViewProduct() {
 
     const { id } = useParams();
     const [product, setProduct] = useState({
-        name: "",
-        price: "",
-        category: "",
-        quantity: ""
+       
     });
 
     useEffect(() => {
-        axios.get("https://worksheet-catalogue.mashupstack.com/products" + id)
+        axios.get("https://worksheet-catalogue.mashupstack.com/products/" + id)
             .then(response => {
                 setProduct(response.data);
             });
