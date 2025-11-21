@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
 import PostListItem from "./PostListItem";
+import checkAuth from "../auth/checkAuth"
 
 function ListPosts() {
   const [allPosts, setAllPosts] = useState([]); // Store all the fetched posts from the API
@@ -95,4 +96,4 @@ function ListPosts() {
   );
 }
 
-export default ListPosts;
+export default checkAuth(ListPosts);
