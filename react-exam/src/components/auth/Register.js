@@ -66,6 +66,7 @@ function Register() {
               value={password}
               onChange={e => setPassword(e.target.value)}
               placeholder="Enter your password"
+              autoComplete="new-password"
             />
           </div>
 
@@ -77,6 +78,7 @@ function Register() {
               value={confirmPassword}
               onChange={e => setConfirmPassword(e.target.value)}
               placeholder="Confirm your password"
+              autoComplete="new-password"
             />
           </div>
 

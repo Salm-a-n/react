@@ -45,12 +45,13 @@ function Login() {
           <div className="mb-3">
             <label className="form-label">Password</label>
             <input
-              type="password"
-              className="form-control"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder="Enter your password"
-            />
+                  type="password"
+                  className="form-control"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  placeholder="Enter your password"
+                  autoComplete="current-password" 
+                />
           </div>
 
           <button
