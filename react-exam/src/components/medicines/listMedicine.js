@@ -12,7 +12,7 @@ function ListMedicine() {
 
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-  const pageSize = 2;
+  const pageSize = 3;
 
   const filtered = all.filter(m =>
     m.name.toLowerCase().includes(search.toLowerCase())
@@ -22,6 +22,9 @@ function ListMedicine() {
   const paginated = filtered.slice((page - 1) * pageSize, page * pageSize);
 
   function deleteMed(id) {
+    
+    const confirmDelete = window.confirm("Do you really want to remove this medicine?");
+    if (!confirmDelete) return; 
     const updated = all.filter(m => m.id !== id);
     localStorage.setItem(key, JSON.stringify(updated));
     navigate("/medicines");
@@ -30,7 +33,6 @@ function ListMedicine() {
   return (
     <div>
       <Navbar />
-
       <div className="container mt-4">
         <h2 className="mb-3">My Medicines</h2>
 
@@ -99,11 +101,6 @@ function ListMedicine() {
               </tbody>
             </table>
 
-            <Link to="/medicines/create" className="btn btn-success mb-3">
-               Add Medicine
-            </Link>
-
-        
             <nav>
               <ul className="pagination">
                 <li className={`page-item ${page === 1 ? "disabled" : ""}`}>
@@ -114,8 +111,6 @@ function ListMedicine() {
                     Prev
                   </button>
                 </li>
-
-            
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map(num => (
                   <li
                     key={num}
@@ -129,11 +124,8 @@ function ListMedicine() {
                     </button>
                   </li>
                 ))}
-
                 <li
-                  className={`page-item ${
-                    page === totalPages ? "disabled" : ""
-                  }`}
+                  className={`page-item ${page === totalPages ? "disabled" : ""}`}
                 >
                   <button
                     className="page-link"
@@ -146,6 +138,10 @@ function ListMedicine() {
             </nav>
           </>
         )}
+
+        <Link to="/medicines/create" className="btn btn-success mb-3">
+          Add Medicine
+        </Link>
       </div>
     </div>
   );

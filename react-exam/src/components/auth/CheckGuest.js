@@ -10,7 +10,7 @@ export const checkGuest = (Component) => {
 
     useEffect(() => {
       if (user) {
-        navigate("/");
+        navigate("/medicines");
       }
     }, [user, navigate]);
 

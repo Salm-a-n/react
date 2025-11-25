@@ -45,8 +45,7 @@ function ViewMedicine() {
 
             <button
               className="btn btn-secondary"
-              onClick={() => navigate("/medicines")}
-            >
+              onClick={() => navigate("/medicines")}>
               Back to List
             </button>
           </div>

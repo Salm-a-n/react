@@ -24,7 +24,9 @@ function EditMedicine() {
   function updateMed() {
     const meds = JSON.parse(localStorage.getItem(key)) || [];
     const updated = meds.map(m =>
-      m.id === parseInt(id) ? { ...m, name, stock } : m
+      m.id === parseInt(id)
+        ? { ...m, name, stock }
+        : m
     );
     localStorage.setItem(key, JSON.stringify(updated));
     navigate("/medicines");
