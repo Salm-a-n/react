@@ -1,4 +1,3 @@
-// ...existing code...
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import ListMedicine from "./components/medicines/listMedicine";
@@ -20,4 +19,3 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
-// ...existing code...
