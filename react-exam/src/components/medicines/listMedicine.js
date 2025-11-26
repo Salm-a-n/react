@@ -13,18 +13,18 @@ function ListMedicine() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const pageSize = 3;
+  const newestFirst = [...all].reverse();
 
-  const filtered = all.filter(m =>
-    m.name.toLowerCase().includes(search.toLowerCase())
+  const filtered = newestFirst.filter(m =>
+    m.name?.toLowerCase().includes(search.toLowerCase())
   );
 
-  const totalPages = Math.ceil(filtered.length / pageSize);
+  const totalPages = Math.ceil(filtered.length / pageSize) || 1;
   const paginated = filtered.slice((page - 1) * pageSize, page * pageSize);
 
   function deleteMed(id) {
-    
     const confirmDelete = window.confirm("Do you really want to remove this medicine?");
-    if (!confirmDelete) return; 
+    if (!confirmDelete) return;
     const updated = all.filter(m => m.id !== id);
     localStorage.setItem(key, JSON.stringify(updated));
     navigate("/medicines");
@@ -49,7 +49,10 @@ function ListMedicine() {
           />
           <button
             className="btn btn-outline-secondary"
-            onClick={() => setSearch("")}
+            onClick={() => {
+              setSearch("");
+              setPage(1);
+            }}
           >
             Cancel
           </button>
@@ -75,7 +78,7 @@ function ListMedicine() {
                   <tr key={m.id}>
                     <td>{m.name}</td>
                     <td>{m.stock}</td>
-                    <td>{m.addedAt}</td>
+                    <td>{m.addedAt}</td> 
                     <td>
                       <Link
                         to={`/medicines/view/${m.id}`}
