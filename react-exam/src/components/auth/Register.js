@@ -10,6 +10,12 @@ function Register() {
   const navigate = useNavigate();
 
   function registerUser() {
+    
+    if (!username.trim() || !email.trim() || !password.trim() || !confirmPassword.trim()) {
+      alert("All fields are required.");
+      return;
+    }
+
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
     if (users.find(u => u.email === email)) {
@@ -44,6 +50,7 @@ function Register() {
               value={username}
               onChange={e => setUsername(e.target.value)}
               placeholder="Enter your username"
+              required 
             />
           </div>
 
@@ -55,6 +62,7 @@ function Register() {
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder="Enter your email"
+              required 
             />
           </div>
 
@@ -67,6 +75,7 @@ function Register() {
               onChange={e => setPassword(e.target.value)}
               placeholder="Enter your password"
               autoComplete="new-password"
+              required  
             />
           </div>
 
@@ -79,6 +88,7 @@ function Register() {
               onChange={e => setConfirmPassword(e.target.value)}
               placeholder="Confirm your password"
               autoComplete="new-password"
+              required  
             />
           </div>
 

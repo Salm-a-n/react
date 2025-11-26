@@ -12,6 +12,12 @@ function Login() {
   const navigate = useNavigate();
 
   function loginUser() {
+   
+    if (!email.trim() || !password.trim()) {
+      alert("Email and Password are required.");
+      return;
+    }
+
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find(u => u.email === email && u.password === password);
 
@@ -22,6 +28,7 @@ function Login() {
     }
 
     dispatch(setUser(user));
+    navigate("/"); 
   }
 
   return (
@@ -39,19 +46,21 @@ function Login() {
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder="Enter your email"
+              required 
             />
           </div>
 
           <div className="mb-3">
             <label className="form-label">Password</label>
             <input
-                  type="password"
-                  className="form-control"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  placeholder="Enter your password"
-                  autoComplete="current-password" 
-                />
+              type="password"
+              className="form-control"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              autoComplete="current-password"
+              required 
+            />
           </div>
 
           <button
